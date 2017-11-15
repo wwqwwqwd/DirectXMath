@@ -29,7 +29,7 @@
 #endif
 #endif
 
-#if _XM_VECTORCALL_
+#if _XM_VECTORCALL_ || defined(__clang__)
 #define XM_CALLCONV __vectorcall
 #else
 #define XM_CALLCONV __fastcall
@@ -90,7 +90,7 @@
 #endif
 
 #if !defined(_XM_ARM_NEON_INTRINSICS_) && !defined(_XM_SSE_INTRINSICS_) && !defined(_XM_NO_INTRINSICS_)
-#if (defined(_M_IX86) || defined(_M_X64)) && !defined(_M_HYBRID_X86_ARM64)
+#if (defined(_M_IX86) || defined(_M_X64) || defined(__x86_64)) && !defined(_M_HYBRID_X86_ARM64)
 #define _XM_SSE_INTRINSICS_
 #elif defined(_M_ARM) || defined(_M_ARM64) || defined(_M_HYBRID_X86_ARM64)
 #define _XM_ARM_NEON_INTRINSICS_
